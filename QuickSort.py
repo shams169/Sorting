@@ -1,3 +1,5 @@
+from random import randint
+
 def Partition(A, start, end):
     pIndex = start
     pivot = A[end]
@@ -10,6 +12,12 @@ def Partition(A, start, end):
 
     return pIndex
 
+def RandomizedPartition(A, start, end):
+    pIndex = randint(start, end)
+    swap(A, pIndex, end)
+    return Partition(A, start, end)
+
+
 
 def swap(A, i, j):
     A[i], A[j] = A[j], A[i]
@@ -17,7 +25,8 @@ def swap(A, i, j):
 
 def QuickSort(A, start, end):
     if (start < end):
-        pIndex = Partition(A, start, end)
+        #pIndex = Partition(A, start, end)
+        pIndex = RandomizedPartition(A, start, end)
         QuickSort(A, start, pIndex - 1)
         QuickSort(A, pIndex + 1, end)
     return A
